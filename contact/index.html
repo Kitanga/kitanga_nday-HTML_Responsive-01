@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Power Audio - Makers of synth music</title>
+
+    <!-- Favicons!!!!!! -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../img/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../img/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../img/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../img/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../img/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../img/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../img/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../img/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/icons/favicon-16x16.png">
+    <link rel="manifest" href="../img/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../img/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <!-- Custom style sheets -->
+    <link rel="stylesheet" href="./../css/styles.css">
+    <style>
+        /* Styles for this page */
+
+        form {
+            width: 25%;
+            height: auto;
+            margin: 0 auto;
+            /* Use margin-top instead of padding-top, because padding uses the width of the screen */
+            margin-top: 2.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        h1,
+        input,
+        textarea,
+        .submit {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            height: 43px;
+        }
+
+        input,
+        textarea {
+            margin-bottom: 5.2%;
+            border: none;
+            padding-left: 7px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .submit span {
+            width: 20%;
+            background-color: white;
+            color: black;
+            text-align: center;
+            float: right;
+            display: block;
+            cursor: pointer;
+        }
+
+        input,
+        textarea,
+        .submit span {
+            border-radius: 4px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            form {
+                width: 52%;
+                margin-top: 17%;
+            }
+            .submit span {
+                width: 100%;
+                padding: 4%;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            form {
+                width: 70%;
+                margin-top: -1.7%;
+            }
+        }
+    </style>
+
+    <!-- Polyfills -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+</head>
+
+<body>
+    <!-- This is the element to which we add the album art and also change -->
+    <!-- <label for="focus" class="focuser song1"></label> -->
+    <!-- <input type="checkbox" id="focus" hidden> -->
+    <!-- This is the preloader, which contains both the warning message (warns user of audio) and the loader -->
+    <div class="preloader">
+        <div class="audio-warning">
+            <div class="audio-warning__message">Are you OK with us playing music?</div>
+            <div class="audio-warning__buttons">
+                <div id="yes" class="audio-warning__btn">Yes</div>
+                <div id="no" class="audio-warning__btn">No</div>
+            </div>
+        </div>
+        <div id="preload-image" class="hidden">
+            <!-- <div id="preload-image" class="hidden rythm-medium"> -->
+            <img class="rythm-glitch1" src="../img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch2" src="../img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch1" src="../img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch2" src="../img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+        </div>
+    </div>
+    <!-- The HEADER element will hold the navigation and the audio player -->
+    <header class="hidden">
+        <nav class="nav">
+            <div class="nav__container">
+                <div class="nav__logo">
+                    <img class="rythm-high" src="./../img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+                </div>
+
+                <label for="toggle" class="toggler rythm-high">
+                    <i class="fa fa-bars"></i>
+                </label>
+                <input hidden type="checkbox" id="toggle">
+                <ul class="nav__links">
+                    <li class="nav__mobile-closer">
+                        <label for="toggle">
+                            <!-- <i class="fa fa-close"></i> -->
+                            <i class="fa fa-arrow-circle-left"></i>
+                        </label>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="nav__link">
+                        <div class="nav__link--hoverable rythm-high">
+                            <a href="/coming-soon">Music</a>
+                        </div>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/about">About</a>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav__mute">
+                    <a href="#">
+                        <img id="mute" src="./../img/icons/audio.png" alt="Mute audio with this button">
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Form goes here -->
+        <form action="#">
+            <h1>Say Hi</h1>
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <textarea name="message" id="message" placeholder="Message" cols="30" rows="10"></textarea>
+            <div class="submit">
+                <span>Submit</span>
+            </div>
+        </form>
+    </header>
+    <footer>&copy; 2018 Power Glove. All Rights Reserved. Enquiries - info@powergloveaudio.com</footer>
+
+    <!-- This is a YouTube video that will be used as a background -->
+    <div class="video-bg">
+        <video loop autoplay class="video-bg__video" src="../media/bg-2.webm" style=></video>
+
+        <div class="video-bg__overlay"></div>
+        <!-- <iframe hidden width="560" height="315" src="https://www.youtube.com/embed/TwNQL7NU1Cw?rel=0&controls=0&showinfo=0&loop=1&autoplay=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="false"></iframe> -->
+    </div>
+
+    <script src="./../js/rythm.min.js"></script>
+    <script>
+        var muteAll = false;
+        var hasLoaded = false;
+        var isPlaying = false;
+        var isPlayingThrough = false;
+        var hasChoosenMuteDefault = false;
+        var count = 0;
+
+        var rythm = new Rythm();
+        rythm.addRythm('rythm-glitch1', 'shake', 4, 3, {
+            direction: 'left',
+            min: -7,
+            max: 7
+        });
+        rythm.addRythm('rythm-glitch2', 'shake', 4, 3, {
+            direction: 'right',
+            min: -7,
+            max: 7
+        });
+
+        var preloadAudio = new Audio();
+        preloadAudio.loop = true;
+        preloadAudio.oncanplay = () => {
+            // if (!hasLoaded) {
+            // }
+            // preloadAudio.volume = 0.7;
+            preloadAudio.play();
+            rythm.connectExternalAudioElement(preloadAudio);
+            rythm.start();
+        };
+        var muteBtn = document.getElementById('mute');
+
+        muteBtn.onclick = () => {
+            rythm.player.audio.muted = !rythm.player.audio.muted;
+        };
+
+        function warning_btn_clicked() {
+            document.getElementById('preload-image').classList.remove('hidden');
+            document.querySelector('.audio-warning').classList.add('hidden');
+
+            // setInterval(() => {
+            //     if (hasLoaded) {
+
+            //     }
+            // }, 1000);
+        }
+
+        // Onload event for page that hides the page's preloader upon finishing
+        function showPage() {
+            document.querySelector('header').classList.remove('hidden');
+            document.querySelector('footer').classList.remove('hidden');
+            document.querySelector('.preloader').classList.add('hidden');
+        }
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                hasLoaded = true;
+                if (hasChoosenMuteDefault) {
+                    preloadAudio.pause();
+                    showPage();
+                    preloadAudio.volume = 0;
+                    startMusic();
+                }
+            }, 4000);
+        });
+
+        // Make all a tags with an href ref of "#" not do anything
+        document.querySelectorAll('a[href="#"]').forEach(ele => {
+            ele.onclick = event => {
+                event.preventDefault();
+            };
+        });
+
+        document.getElementById('yes').onclick = () => {
+            muteAll = false;
+            hasChoosenMuteDefault = true;
+            warning_btn_clicked();
+            if (hasLoaded) {
+                showPage();
+                startMusic();
+            } else {
+                // preloadAudio.src = "./media/PG S01 loop 2.ogg";
+                preloadAudio.src = "./../../research/music/PG S01 loop 2.aac";
+            }
+        };
+        document.getElementById('no').onclick = () => {
+            muteAll = true;
+            hasChoosenMuteDefault = true;
+            warning_btn_clicked();
+        };
+
+        function stopMusic() {
+            if (rythm.stopped === false) {
+                rythm.stop();
+            }
+        }
+
+        function stopPlayingForMute() {
+            rythm.player.audio.pause();
+            rythm.player.audio.currentTime = 0;
+        }
+
+        var startMusic = function () {
+            if (!muteAll) {
+                stopMusic();
+                // rythm.connectExternalAudioElement(audio)
+                rythm.setMusic("./../media/Loaded.mp3");
+                rythm.setGain(0);
+                rythm.player.audio.loop = true;
+                rythm.start();
+            }
+        };
+
+        // Position vectors
+        var mouse = {
+            x: 0,
+            y: 0
+        };
+        var submitBtnRect = document.querySelector('.submit span');
+
+        var submitBtn = {
+            x: 0,
+            y: 0
+        };
+
+        function getDistance({
+            screenX,
+            screenY
+        }) {
+            submitBtn = submitBtnRect.getBoundingClientRect();
+            // console.log(Math.abs(screenX), Math.abs(screenY), '\n', Math.abs(submitBtn.x), Math.abs(submitBtn.y));
+            var x = Math.abs((screenX - submitBtn.x) ^ 2);
+            var y = Math.abs((screenY - submitBtn.y) ^ 2);
+            var dist = Math.sqrt(x + y);
+
+            console.log("Screen:", screenX, screenY);
+            console.log("Button:", submitBtn.x, submitBtn.y);
+            console.log(x, y);
+            console.log(dist);
+
+            return dist;
+        }
+
+        window.addEventListener('mousemove', event => {
+            var distance = getDistance(event);
+            // console.log(distance);
+            var max = 34;
+            if (distance < max) {
+                rythm.setGain(1 - (distance / max));
+                console.log(1 - (distance / max));
+            } else {
+                rythm.setGain(0);
+                console.log(0);
+            }
+        });
+    </script>
+</body>
+
+</html>

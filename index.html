@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Power Audio - Makers of synth music</title>
+
+    <!-- Favicons!!!!!! -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Custom style sheets -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- Polyfills -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Test -->
+    <!-- <div class="ele"></div> -->
+</head>
+
+<body>
+    <!-- This is the element to which we add the album art and also change -->
+    <label for="focus" class="focuser song1"></label>
+    <input type="checkbox" id="focus" hidden>
+    <!-- This is the preloader, which contains both the warning message (warns user of audio) and the loader -->
+    <div class="preloader">
+        <div class="audio-warning">
+            <div class="audio-warning__message">Are you OK with us playing music?</div>
+            <div class="audio-warning__buttons">
+                <div id="yes" class="audio-warning__btn">Yes</div>
+                <div id="no" class="audio-warning__btn">No</div>
+            </div>
+        </div>
+        <div id="preload-image" class="hidden">
+            <!-- <div id="preload-image" class="hidden rythm-medium"> -->
+            <img class="rythm-glitch1" src="img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch2" src="img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch1" src="img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+            <img class="rythm-glitch2" src="img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+        </div>
+    </div>
+    <!-- The HEADER element will hold the navigation and the audio player -->
+    <header class="hidden">
+        <nav class="nav">
+            <div class="nav__container">
+                <div class="nav__logo">
+                    <img class="rythm-high" src="img/pg-logo-2x-noshadow.png" alt="Power Glove Audio logo. Makers of synth music">
+                </div>
+
+                <label for="toggle" class="toggler rythm-high">
+                    <i class="fa fa-bars"></i>
+                </label>
+                <input hidden type="checkbox" id="toggle">
+                <ul class="nav__links">
+                    <li class="nav__mobile-closer">
+                        <label for="toggle">
+                            <!-- <i class="fa fa-close"></i> -->
+                            <i class="fa fa-arrow-circle-left"></i>
+                        </label>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="nav__link">
+                        <div class="nav__link--hoverable rythm-high">
+                            <a href="/coming-soon" class="">Music</a>
+                        </div>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/about">About</a>
+                    </li>
+                    <li class="nav__link">
+                        <a href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav__mute">
+                    <a href="#">
+                        <img id="mute" src="img/icons/audio.png" alt="Mute audio with this button">
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="player">
+            <h1>Motorcycle Cop</h1>
+            <h2>Power Glove</h2>
+            <div class="player__controls-container">
+                <div class="player__controls">
+                    <div id="prev" class="pointer">
+                        <i class="fa fa-fast-backward" aria-hidden="true"></i>
+                    </div>
+                    <div id="play" class="pointer">
+                        <i id="play-icon" class="fa fa-play" aria-hidden="true"></i>
+                        <!-- <div class="player__spinner"></div> -->
+                    </div>
+                    <div id="next" class="pointer">
+                        <i class="fa fa-fast-forward" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <footer class="hidden">&copy; 2018 Power Glove. All Rights Reserved. Enquiries - info@powergloveaudio.com</footer>
+
+    <!-- This is a YouTube video that will be used as a background -->
+    <div class="video-bg">
+        <video loop autoplay class="video-bg__video" src="media/bg-2.webm" style=></video>
+
+        <div class="video-bg__overlay"></div>
+        <!-- <iframe hidden width="560" height="315" src="https://www.youtube.com/embed/TwNQL7NU1Cw?rel=0&controls=0&showinfo=0&loop=1&autoplay=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="false"></iframe> -->
+    </div>
+
+    <!-- Javascript, used for the preload animation and the audio player. Otherwise everything else is CSS based. -->
+    <script src="js/rythm.min.js"></script>
+    <script>
+        var muteAll = false;
+        var hasLoaded = false;
+        var isPlaying = false;
+        var isPlayingThrough = false;
+        var hasChoosenMuteDefault = false;
+        var count = 0;
+
+        var rythm = new Rythm();
+        rythm.addRythm('rythm-glitch1', 'shake', 4, 3, {
+            direction: 'left',
+            min: -7,
+            max: 7
+        });
+        rythm.addRythm('rythm-glitch2', 'shake', 4, 3, {
+            direction: 'right',
+            min: -7,
+            max: 7
+        });
+
+        var preloadAudio = new Audio();
+        preloadAudio.loop = true;
+        preloadAudio.oncanplay = () => {
+            // if (!hasLoaded) {
+            // }
+            // preloadAudio.volume = 0.7;
+            preloadAudio.play();
+            rythm.connectExternalAudioElement(preloadAudio);
+            rythm.start();
+        };
+        var playBtn = document.getElementById('play');
+        var prevBtn = document.getElementById('prev');
+        var nextBtn = document.getElementById('next');
+        var muteBtn = document.getElementById('mute');
+
+        function showPlayBtn() {
+            document.getElementById('play-icon').classList.remove('fa-pause');
+            document.getElementById('play-icon').classList.add('fa-play');
+        }
+
+        function showPauseBtn() {
+            document.getElementById('play-icon').classList.remove('fa-play');
+            document.getElementById('play-icon').classList.add('fa-pause');
+        }
+
+        function turnOffMuteAll() {
+            // If the user previously muted the sound (e.g. during the first screen view, then we unmute and play music)
+            if (muteAll) {
+                muteAll = false;
+            }
+        }
+
+        function isNowPlaying() {
+            isPlaying = true;
+            isPlayingThrough = true;
+        }
+
+        playBtn.onclick = () => {
+            turnOffMuteAll();
+            // If the user hasn't started the song, then we start the song from the start
+            if (!isPlayingThrough) {
+                startMusic();
+            }
+
+            if (!isPlaying) {
+                isNowPlaying();
+                rythm.player.audio.play();
+
+                showPauseBtn();
+            } else {
+                // Pause the song
+                isPlaying = false;
+                isPlayingThrough = true;
+                rythm.player.audio.pause();
+
+                showPlayBtn();
+            }
+        };
+        prevBtn.onclick = () => {
+            turnOffMuteAll();
+            showPauseBtn();
+            isNowPlaying();
+
+            document.querySelector('.focuser').classList.remove('song' + (count + 1));
+            if (--count < 0) {
+                count = 3;
+            }
+            // Do not move this code above the code above. A class is added to the focuser element in the startMusic().
+            stopMusic();
+            startMusic();
+        };
+        nextBtn.onclick = () => {
+            turnOffMuteAll();
+            showPauseBtn();
+            isNowPlaying();
+
+            document.querySelector('.focuser').classList.remove('song' + (count + 1));
+            if (++count > 3) {
+                count = 0;
+            }
+            // Do not move this code above the code above. A class is added to the focuser element in the startMusic().
+            stopMusic();
+            startMusic();
+        };
+
+        muteBtn.onclick = () => {
+            stopPlayingForMute();
+            stopMusic();
+            muteAll = true;
+            isPlaying = false;
+            isPlayingThrough = false;
+            showPlayBtn();
+        };
+
+        window.onkeydown = event => {
+            var keyCode = event.keyCode;
+            if (keyCode === 32) {
+                // Space key pressed
+                playBtn.click();
+            } else if (keyCode === 78 || keyCode === 39) {
+                // N or right arrow key pressed
+                nextBtn.click();
+            } else if (keyCode === 80 || keyCode === 37) {
+                // P or left arrow key pressed
+                prevBtn.click();
+            }
+        };
+
+        function warning_btn_clicked() {
+            document.getElementById('preload-image').classList.remove('hidden');
+            document.querySelector('.audio-warning').classList.add('hidden');
+
+            // setInterval(() => {
+            //     if (hasLoaded) {
+
+            //     }
+            // }, 1000);
+        }
+
+        // Onload event for page that hides the page's preloader upon finishing
+        function showPage() {
+            document.querySelector('header').classList.remove('hidden');
+            document.querySelector('footer').classList.remove('hidden');
+            document.querySelector('.preloader').classList.add('hidden');
+        }
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                hasLoaded = true;
+                if (hasChoosenMuteDefault) {
+                    preloadAudio.pause();
+                    showPage();
+                    preloadAudio.volume = 0;
+                }
+            }, 4000);
+        });
+
+        // Make all a tags with an href ref of "#" not do anything
+        document.querySelectorAll('a[href="#"]').forEach(ele => {
+            ele.onclick = event => {
+                event.preventDefault();
+            };
+        });
+
+        document.getElementById('yes').onclick = () => {
+            muteAll = false;
+            hasChoosenMuteDefault = true;
+            warning_btn_clicked();
+            if (hasLoaded) {
+                showPage();
+            } else {
+                // preloadAudio.src = "./media/PG S01 loop 2.ogg";
+                preloadAudio.src = "./../research/music/PG S01 loop 2.aac";
+            }
+        };
+        document.getElementById('no').onclick = () => {
+            muteAll = true;
+            hasChoosenMuteDefault = true;
+            warning_btn_clicked();
+        };
+
+        var playerCount = 0;
+        var songTotal = 4;
+
+        var songs = [
+            "./media/m4a/Power Glove - Motorcycle Cop (Ultra HQ).m4a",
+            "./media/m4a/9th Dimension - Trials of the Blood Dragon.m4a",
+            "./media/m4a/NightForce.m4a",
+            "./media/m4a/Far Cry 3_ Blood Dragon OST - Power Core (Track 07).m4a"
+        ];
+
+        var songInfo = [
+            "Motorcycle Cop",
+            "9th Dimension",
+            "Nightforce",
+            "Power Core"
+        ];
+
+        function stopMusic() {
+            if (rythm.stopped === false) {
+                rythm.stop();
+            }
+        }
+
+        function stopPlayingForMute() {
+            rythm.player.audio.pause();
+            rythm.player.audio.currentTime = 0;
+        }
+
+        var startMusic = function () {
+            if (!muteAll) {
+                stopMusic();
+                // rythm.connectExternalAudioElement(audio)
+                rythm.setMusic(songs[count]);
+                rythm.setGain(0.7);
+                rythm.start();
+
+                document.querySelector('.focuser').classList.add('song' + (count + 1));
+                document.querySelector('.player h1').innerText = songInfo[count];
+            }
+        };
+
+        document.querySelector('.focuser').onclick = () => {
+            if (!document.querySelector('header').classList.contains('focus')) {
+                document.querySelector('header').classList.add('focus');
+                document.querySelector('footer').classList.add('focus');
+            } else {
+                document.querySelector('header').classList.remove('focus');
+                document.querySelector('footer').classList.remove('focus');
+            }
+        };
+    </script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
