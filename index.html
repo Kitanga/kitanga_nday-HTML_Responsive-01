@@ -176,20 +176,22 @@
             document.getElementById('play-icon').classList.add('fa-pause');
         }
         function turnOffMuteAll() {
-            rythm.player.audioCtx.resume();
+            
             // If the user previously muted the sound (e.g. during the first screen view, then we unmute and play music)
             if (muteAll) {
                 muteAll = false;
             }
+            return rythm.player.audioCtx.resume();
         }
         function isNowPlaying() {
             isPlaying = true;
             isPlayingThrough = true;
         }
         playBtn.onclick = () => {
-            turnOffMuteAll();
+            turnOffMuteAll()
             // If the user hasn't started the song, then we start the song from the start
-            if (!isPlayingThrough) {
+            .then(function() {
+                if (!isPlayingThrough) {
                 startMusic();
             }
             if (!isPlaying) {
@@ -203,10 +205,12 @@
                 rythm.player.audio.pause();
                 showPlayBtn();
             }
+            });
         };
         prevBtn.onclick = () => {
-            turnOffMuteAll();
-            showPauseBtn();
+            turnOffMuteAll()
+            .then(function() {
+                showPauseBtn();
             isNowPlaying();
             document.querySelector('.focuser').classList.remove('song' + (count + 1));
             if (--count < 0) {
@@ -215,10 +219,12 @@
             // Do not move this code above the code above. A class is added to the focuser element in the startMusic().
             stopMusic();
             startMusic();
+            });
         };
         nextBtn.onclick = () => {
-            turnOffMuteAll();
-            showPauseBtn();
+            turnOffMuteAll()
+            .then(function() {
+                showPauseBtn();
             isNowPlaying();
             document.querySelector('.focuser').classList.remove('song' + (count + 1));
             if (++count > 3) {
@@ -227,6 +233,7 @@
             // Do not move this code above the code above. A class is added to the focuser element in the startMusic().
             stopMusic();
             startMusic();
+            });
         };
         muteBtn.onclick = () => {
             stopPlayingForMute();
