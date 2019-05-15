@@ -176,6 +176,7 @@
             document.getElementById('play-icon').classList.add('fa-pause');
         }
         function turnOffMuteAll() {
+            rythm.player.audioCtx.resume();
             // If the user previously muted the sound (e.g. during the first screen view, then we unmute and play music)
             if (muteAll) {
                 muteAll = false;
